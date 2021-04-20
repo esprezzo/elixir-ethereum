@@ -18,6 +18,7 @@ defmodule Ethereum.Transport do
     enc = %{
       method: method, 
       params: params, 
+      jsonrpc: "2.0",
       id: 0
     }
 
@@ -58,8 +59,7 @@ defmodule Ethereum.Transport do
         end
       _ -> "http://" <> ethereum_host <> ":" <> ethereum_port
     end
-    
-    # Logger.info "DAEMON_HOST: #{daemon_host}"
+    Logger.info "DAEMON_HOST: #{daemon_host}"
     result = 
       __MODULE__.post!(daemon_host, enc)
       |> Map.get(:body)

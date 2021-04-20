@@ -25,8 +25,6 @@ defmodule Ethereum.Web3 do
     end
   end
 
-
-
   @spec decode_event(binary(), binary()) :: any()
   @doc "Decodes event based on given data and provided signature"
   def decode_event(data, signature) do
@@ -41,8 +39,6 @@ defmodule Ethereum.Web3 do
       ABI.TypeDecoder.decode(formatted_data, fs)
     end
   end
-  
-  
 
   @doc """
 
