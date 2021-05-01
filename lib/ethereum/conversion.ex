@@ -1,6 +1,6 @@
 defmodule Ethereum.Conversion do
   @moduledoc """
-  Various Wei/Ethereum Eth Style Unit Conversion Functions
+    Various Wei/Ethereum Eth Style Unit Conversion Functions
   """
   require IEx
   require Logger
@@ -16,11 +16,10 @@ defmodule Ethereum.Conversion do
   @spec format_units(integer, integer) :: float
   def format_units(atomic_units, decimals) do
     divisor = :math.pow(10, decimals)
-    # Logger.error "Etherum.format_units(#{inspect atomic_units}, #{ inspect decimals}) // #{ inspect divisor}"
     if atomic_units && divisor do
       atomic_units / divisor
     else 
-      # Logger.error "MATH ERROR IN Etherum.format_units(#{atomic_units}, #{divisor})"
+      Logger.error "MATH ERROR IN Ethereum.format_units(#{atomic_units}, #{divisor})"
       0
     end
   end
