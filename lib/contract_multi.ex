@@ -449,14 +449,11 @@ defmodule Ethereum.ContractMulti do
         get_event_attributes(state, filter_info[:contract_name], filter_info[:event_name])
       
       {:ok, logs} = Ethereum.get_filter_logs(filter_id)
-      
-      Logger.warn "handle_call({:get_filter_logs})"
    
       formatted_logs =
         if logs && logs != [] do
           Enum.map(logs, fn log ->
-            # Logger.warn "event_attributes: #{inspect event_attributes}"
-            # Logger.warn "log: #{inspect log}"
+
             formatted_log =
               Enum.reduce(
                 [
