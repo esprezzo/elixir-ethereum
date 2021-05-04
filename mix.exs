@@ -42,10 +42,7 @@ defmodule Ethereum.Mixfile do
 
   defp deps do
     [
-      {:tesla, "~> 1.3.0"},
-      # optional, but recommended adapter
-      # {:hackney, ".*", {git, "git://github.com/benoitc/hackney.git", {branch: "master"}}},
-      # {:ex_abi, "git: https://github.com/alanwilhelm/ex_abi.git"},
+      {:tesla, "~> 1.4.0"},
       {:ex_abi, "~> 0.5.1"},
       {:ex_keccak, "~> 0.1.2"},
       # optional, required by JSON middleware
