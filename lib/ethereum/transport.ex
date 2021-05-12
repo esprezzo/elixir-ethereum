@@ -22,7 +22,6 @@ defmodule Ethereum.Transport do
       method: method, 
       params: params, 
       jsonrpc: "2.0",
-      body: %{},
       id: 0
     }
 
