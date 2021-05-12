@@ -66,7 +66,7 @@ defmodule Ethereum.Transport do
 
     {:ok, encoded} = Jason.encode(enc)
     result = 
-      __MODULE__.post!(daemon_host, enc)
+      __MODULE__.post!(daemon_host, encoded)
       |> Map.get(:body)
       |> Map.get("result")
     # Logger.warn "#{inspect result}"
