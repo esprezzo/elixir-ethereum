@@ -4,6 +4,8 @@ defmodule Ethereum.Transport do
 
   use Tesla
 
+  adapter Tesla.Adapter.Hackney
+
   plug Tesla.Middleware.Headers, [
     {"content-type", "application/json"}
   ]
