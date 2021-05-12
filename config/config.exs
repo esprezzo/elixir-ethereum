@@ -10,7 +10,7 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-  config :ethereum, ethereum_rpc_url: System.get_env("ETHEREUM_HOST")
+#  config :ethereum, ethereum_rpc_url: System.get_env("ETHEREUM_HOST") # XXX
 #
 # And access this configuration in your application as:
 #
