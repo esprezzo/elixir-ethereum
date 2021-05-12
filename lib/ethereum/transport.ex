@@ -5,8 +5,8 @@ defmodule Ethereum.Transport do
   use Tesla
 
   plug Tesla.Middleware.Headers, [
-    {"Api-Key", Application.fetch_env!(:esp, :api_key)},
-    {"Api-Secret", Application.fetch_env!(:esp, :api_secret)},
+    {"Api-Key", Application.fetch_env!(:esp, :eth_api_key)},
+    {"Api-Secret", Application.fetch_env!(:esp, :eth_api_secret)},
     {"content-type", "application/json"}
   ]
   plug Tesla.Middleware.JSON
