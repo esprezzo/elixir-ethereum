@@ -5,7 +5,7 @@ defmodule Ethereum.Transport do
   use Tesla
 
   plug Tesla.Middleware.Headers, [
-    
+    # {"Api-Key", Application.fetch_env!(:esp, :eth_api_key)},
     # {"Api-Secret", Application.fetch_env!(:esp, :eth_api_secret)},
     {"Api-Key", "c0e72e98-cd3a-4039-81ae-2909bb1b30ef"},
     {"Api-Secret", "d525304c-9311-431b-890b-a6411dcde1f8"},
