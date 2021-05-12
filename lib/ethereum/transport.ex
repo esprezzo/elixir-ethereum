@@ -24,7 +24,6 @@ defmodule Ethereum.Transport do
         {"Api-Key", "c0e72e98-cd3a-4039-81ae-2909bb1b30ef"},
         {"Api-Secret", "d525304c-9311-431b-890b-a6411dcde1f8"},
       ],
-      body: %{},
       id: 0
     }
 
