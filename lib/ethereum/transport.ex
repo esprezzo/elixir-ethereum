@@ -4,9 +4,9 @@ defmodule Ethereum.Transport do
 
   use Tesla
 
-  # plug Tesla.Middleware.Headers, [
-  #   {"content-type", "application/json"}
-  # ]
+  plug Tesla.Middleware.Headers, [
+    {"content-type", "application/json"}
+  ]
   plug Tesla.Middleware.JSON
 
   @doc false
