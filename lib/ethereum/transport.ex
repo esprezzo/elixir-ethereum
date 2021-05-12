@@ -9,8 +9,6 @@ defmodule Ethereum.Transport do
   
   plug Tesla.Middleware.Headers, [
     {"content-type", "application/json"},
-    {"Api-Key", "c0e72e98-cd3a-4039-81ae-2909bb1b30ef"},
-    {"Api-Secret", "d525304c-9311-431b-890b-a6411dcde1f8"},
   ]
   # plug Tesla.Middleware.JSON
 
@@ -21,8 +19,8 @@ defmodule Ethereum.Transport do
     enc = %{
       method: method, 
       params: params, 
-      # jsonrpc: "2.0",
-      # id: 0
+      jsonrpc: "2.0",
+      id: 0
     }
 
     ethereum_host = case System.get_env("ETHEREUM_HOST") do
@@ -64,7 +62,7 @@ defmodule Ethereum.Transport do
     end
     Logger.info "XXXXX DAEMON_HOST: #{daemon_host}"
     result = 
-      __MODULE__.post!(daemon_host, enc, headers: [
+      __MODULE__.post!(daemon_host, "enc", headers: [
         {"Api-Key", "c0e72e98-cd3a-4039-81ae-2909bb1b30ef"},
         {"Api-Secret", "d525304c-9311-431b-890b-a6411dcde1f8"},
       ])
