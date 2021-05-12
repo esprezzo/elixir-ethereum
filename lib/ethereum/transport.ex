@@ -7,7 +7,7 @@ defmodule Ethereum.Transport do
   plug Tesla.Middleware.Headers, [
     {"content-type", "application/json"}
   ]
-  plug Tesla.Middleware.JSON
+  # plug Tesla.Middleware.JSON
 
   @doc false
   @spec send(method :: String.t, params :: map) :: {:ok, map} | {:error, String.t}
