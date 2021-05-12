@@ -72,8 +72,7 @@ defmodule Ethereum.Transport do
       |> Map.get(:body)
       |> Map.get("result")
       
-    IEx.pry
-    # Logger.warn "#{inspect result}"
+    Logger.warn "#{inspect result}"
     
     result = 
       case dehex do
