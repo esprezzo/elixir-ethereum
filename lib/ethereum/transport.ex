@@ -5,8 +5,8 @@ defmodule Ethereum.Transport do
   use Tesla
 
   plug Tesla.Middleware.Headers, [
-    {"Api-Key", "c0e72e98-cd3a-4039-81ae-2909bb1b30ef"},
-    {"Api-Secret", "d525304c-9311-431b-890b-a6411dcde1f8"},
+    {"Api-Key", System.fetch_env("ETHEREUM_API_KEY")},
+    {"Api-Secret", System.fetch_env("ETHEREUM_API_SECRET")},
     {"content-type", "application/json"}
   ]
   plug Tesla.Middleware.JSON
@@ -64,7 +64,7 @@ defmodule Ethereum.Transport do
       __MODULE__.post!(daemon_host, enc)
       |> Map.get(:body)
       |> Map.get("result")
-    Logger.warn "#{inspect result}"
+    # Logger.warn "#{inspect result}"
     
     result = 
       case dehex do
