@@ -44,7 +44,8 @@ defmodule Ethereum.Mixfile do
     [
       {:tesla, "~> 1.4.0"},
       {:ex_abi, "~> 0.5.1"},
-      {:ex_keccak, "~> 0.1.2"},
+      # {:ex_keccak, "~> 0.1.2"},
+      {:ex_keccak, git: "https://github.com/alanwilhelm/ex_keccak.git"},
       # optional, but recommended adapter
       {:hackney, "~> 1.17.0"},
       {:jason, ">= 1.0.0"},
