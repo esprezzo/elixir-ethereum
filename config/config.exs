@@ -28,4 +28,4 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
-config :tesla, adapter: Tesla.Adapter.Hackney #, [recv_timeout: 30_000, hackney: :insecure]
+config :tesla, adapter: Tesla.Adapter.Hackney, [recv_timeout: 30_000, hackney: :insecure]
