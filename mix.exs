@@ -46,7 +46,7 @@ defmodule Ethereum.Mixfile do
       {:tesla, "~> 1.4.0"},
       {:ex_abi, "~> 0.5.5"},
       # optional, but recommended adapter
-      {:hackney, "~> 1.17.0"},
+      {:hackney, "~> 1.18.0"},
       # {:jason, ">= 1.0.0"},
       {:hexate,  ">= 0.6.0"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
