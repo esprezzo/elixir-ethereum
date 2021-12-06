@@ -178,4 +178,3 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 TODO/Contribution:
 
 Pull requests welcomed. This library also includes some of the more commonly used "admin" and "personal" API functions which will require the node to be started with `--rpcapi "db,eth,net,web3,personal"`. The sensitive interfaces should only be done in a safe network environment if at all.
-# elixir-ethereum
