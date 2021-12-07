@@ -11,7 +11,7 @@ defmodule Ethereum.Eth do
 
   @doc """
   Show best/highest block number
-    
+
   ## Example:
 
       iex> Ethereum.block_number()
@@ -38,9 +38,9 @@ defmodule Ethereum.Eth do
       Ethereum.get_balance("0xfE8bf4ca8A6170E759E89EDB5cc9adec3e33493f")
       {:ok, 0.4650075166583676}
   """
-  @spec get_balance(String.t) :: {:ok, float} | {:error, String.t}
-  def get_balance(account_hash) do
-    case Transport.send("eth_getBalance",[account_hash, "latest"]) do
+  @spec get_balance(String.t()) :: {:ok, float} | {:error, String.t()}
+  def get_balance(account_hash, block \\ "latest") do
+    case Transport.send("eth_getBalance",[account_hash, blockNum]) do
       {:ok, wei_val} ->
         ether_val = wei_val
         |> Hexate.to_integer
@@ -65,13 +65,13 @@ defmodule Ethereum.Eth do
   end
 
   @doc """
-  Get block by number or default to latest. 
-  
+  Get block by number or default to latest.
+
   ## Example:
-  
+
       iex> Ethereum.get_block_by_number(43, false)
       {:ok,  %{"difficulty" => "0x40e990afb", ...}}
-      
+
   """
   @spec get_block_by_number(binary(), boolean()) :: {:ok, integer} | {:error, String.t}
   def get_block_by_number(number, full) do
@@ -88,12 +88,12 @@ defmodule Ethereum.Eth do
   @doc """
   Get block by hash
 
-  ## Example: 
-   
+  ## Example:
+
       iex> Ethereum.get_block_by_hash("0xb8bbe729e16b9aa1b30c157c7d799ddb68814ae183cf6a1c9d3597916e54f50f")
-      {:ok, 
+      {:ok,
         %{
-          "difficulty" => "0x4118100c961", 
+          "difficulty" => "0x4118100c961",
           "extraData" => "0x476574682f76312e302e322f6c696e75782f676f312e342e32",
           ...
         }
@@ -112,13 +112,13 @@ defmodule Ethereum.Eth do
 
 
   @doc """
-  Get Ethereum Protocol Version  
-  
-  ## Example:   
+  Get Ethereum Protocol Version
+
+  ## Example:
 
       iex> Ethereum.protocol_version()
       {:ok, 63}
-  
+
   """
   @spec protocol_version :: {:ok, integer} | {:error, String.t}
   def protocol_version do
@@ -132,11 +132,11 @@ defmodule Ethereum.Eth do
     end
   end
 
-  @doc """  
+  @doc """
   Get current sync status of Ethereum node
-  
+
   ## Example:
-      
+
       iex> Ethereum.syncing()
       {:ok, false}
 
@@ -156,7 +156,7 @@ defmodule Ethereum.Eth do
   Get coinbase address for Ethereum node
 
   ## Example:
-      
+
       iex> Ethereum.coinbase()
       {:ok, false}
 
@@ -176,7 +176,7 @@ defmodule Ethereum.Eth do
   Get current mining status for Ethereum node
 
   ## Example:
-      
+
       iex> Ethereum.mining()
       {:ok, true}
 
@@ -240,7 +240,7 @@ defmodule Ethereum.Eth do
   List accounts managed by connected node
 
   ## Example:
-      
+
       iex> Ethereum.accounts()
       {:ok, ["0x78fc2b9b6cf9b18f91037a5e0e074a479be9dca1",
         "0x141feb71895530f537c847d62f039d9be895bd35",
@@ -263,9 +263,9 @@ defmodule Ethereum.Eth do
 
   @doc """
   Show transactions count for block by hash
-  
+
   ## TODO: Check input to see if "latest" works
-  
+
   ## Example:
 
       iex> Ethereum.transaction_count("0xfE8bf4ca8A6170E759E89EDB5cc9adec3e33493f")
@@ -286,7 +286,7 @@ defmodule Ethereum.Eth do
 
   @doc """
   Show transaction for hash
-    
+
   ## Example:
 
       iex> Ethereum.get_transaction_by_hash("0xbbdea9b303ba7b605130ce0c2dd261893a086f7221511d7a31964c4aab70dca3")
@@ -307,7 +307,7 @@ defmodule Ethereum.Eth do
 
 @doc """
   Get logs for EXISTING filter ID
-    
+
   ## Example:
 
       iex> get_filter_logs(filter_hash)
@@ -326,7 +326,7 @@ end
 
 @doc """
   Show transaction for hash
-    
+
   ## Example:
 
       iex> Ethereum.get_transaction_by_hash("0xbbdea9b303ba7b605130ce0c2dd261893a086f7221511d7a31964c4aab70dca3")
@@ -345,7 +345,7 @@ end
 
   @doc """
     Uninstall Filter
-    
+
   ## Example:
 
       iex> Ethereum.uninstall_filter("0x")
@@ -364,7 +364,7 @@ end
 
   @doc """
   New Filter
-    
+
   ## Example:
 
       iex> Ethereum.uninstall_filter("0x")
@@ -384,7 +384,7 @@ end
 
 @doc """
   Show transaction receipt for hash
-    
+
   ## Example:
       iex> Ethereum.get_transaction_receipt_by_hash("0x6911ae06acd22106a21762af4ce3a8c93156358b6679ccc905ebfab1c34c6e63")
       %{
