@@ -39,7 +39,7 @@ defmodule Ethereum.Eth do
       {:ok, 0.4650075166583676}
   """
   @spec get_balance(String.t()) :: {:ok, float} | {:error, String.t()}
-  def get_balance(account_hash, block \\ "latest") do
+  def get_balance(account_hash, blockNum \\ "latest") do
     case Transport.send("eth_getBalance",[account_hash, blockNum]) do
       {:ok, wei_val} ->
         ether_val = wei_val
