@@ -65,7 +65,7 @@ defmodule Ethereum.Transport do
         end
       _ -> "http://" <> ethereum_host <> ":" <> ethereum_port
     end
-    Logger.info "XXXXX DAEMON_HOST: #{daemon_host}"
+    #  Logger.info "XXXXX DAEMON_HOST: #{daemon_host}"
 
     {:ok, encoded} = Jason.encode(enc)
     result =
@@ -73,7 +73,7 @@ defmodule Ethereum.Transport do
       |> Map.get(:body)
       |> Map.get("result")
 
-    Logger.warn "#{inspect result}"
+    # Logger.warn "#{inspect result}"
 
     result =
       case dehex do
