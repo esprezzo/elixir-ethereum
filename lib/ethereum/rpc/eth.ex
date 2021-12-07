@@ -42,7 +42,6 @@ defmodule Ethereum.Eth do
   def get_balance(account_hash, blockNum \\ "latest") do
     case Transport.send("eth_getBalance",[account_hash, blockNum]) do
       {:ok, wei_val} ->
-        Logger.warn "getBalance: #{wei_val}"
         unless wei_val, do: wei_val = 0
         ether_val = wei_val
         |> Hexate.to_integer
