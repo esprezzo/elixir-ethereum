@@ -63,7 +63,7 @@ defmodule Ethereum.Transport do
         end
       _ -> "http://" <> conn.ethereum_host <> ":" <> conn.ethereum_port
     end
-
+    IEx.pry
     Logger.info "XXXXX DAEMON_HOST: #{inspect daemon_host}"
     {:ok, encoded} = Jason.encode(enc)
     result =
