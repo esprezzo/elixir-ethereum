@@ -21,6 +21,7 @@ defmodule Ethereum do
   defdelegate get_transaction_by_hash(hash), to: Eth
   defdelegate get_transaction_receipt_by_hash(hash), to: Eth
   defdelegate get_block_by_hash(hash, full_txns), to: Eth
+  defdelegate get_block_by_number(conn, number, full), to: Eth
   defdelegate get_block_by_number(number, full \\ false), to: Eth
   defdelegate get_balance(account_hash, block \\ "latest"), to: Eth
   defdelegate protocol_version(), to: Eth
