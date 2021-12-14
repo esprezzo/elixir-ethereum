@@ -20,7 +20,7 @@ defmodule Ethereum.Eth do
   """
   @spec block_number :: {:ok, integer} | {:error, String.t}
   def block_number do
-    case Transport.send("eth_blockNumber",[]) do
+    case Transport.send(conn, "eth_blockNumber",[]) do
       {:ok, resp} ->
         decoded_number = resp
           |> Hexate.to_integer
@@ -40,7 +40,7 @@ defmodule Ethereum.Eth do
   """
   @spec get_balance(String.t()) :: {:ok, float} | {:error, String.t()}
   def get_balance(account_hash, blockNum \\ "latest") do
-    case Transport.send("eth_getBalance",[account_hash, blockNum]) do
+    case Transport.send(conn, "eth_getBalance",[account_hash, blockNum]) do
       {:ok, wei_val} ->
         unless wei_val, do: wei_val = 0
         ether_val = wei_val
@@ -57,7 +57,7 @@ defmodule Ethereum.Eth do
   """
   def eth_call(params) do
     [h | t] = params
-    case Transport.send("eth_call", [h, "latest"], false) do
+    case Transport.send(conn, "eth_call", [h, "latest"], false) do
       {:ok, result} ->
         {:ok, result}
       {:error, reason} ->
@@ -77,7 +77,7 @@ defmodule Ethereum.Eth do
   @spec get_block_by_number(binary(), boolean()) :: {:ok, integer} | {:error, String.t}
   def get_block_by_number(number, full) do
     hex_num = "0x" <> Hexate.encode(number)
-    case Transport.send("eth_getBlockByNumber",[hex_num, full]) do
+    case Transport.send(conn, "eth_getBlockByNumber",[hex_num, full]) do
       {:ok, block} ->
         decoded_block = block
         {:ok, decoded_block}
@@ -103,7 +103,7 @@ defmodule Ethereum.Eth do
   """
   @spec get_block_by_hash(binary(), boolean()) :: {:ok, binary()} | {:error, String.t}
   def get_block_by_hash(hash, full \\ false) do
-    case Transport.send("eth_getBlockByHash",[hash, full]) do
+    case Transport.send(conn, "eth_getBlockByHash",[hash, full]) do
       {:ok, block} ->
         {:ok, block}
       {:error, reason} ->
@@ -123,7 +123,7 @@ defmodule Ethereum.Eth do
   """
   @spec protocol_version :: {:ok, integer} | {:error, String.t}
   def protocol_version do
-    case Transport.send("eth_protocolVersion",[]) do
+    case Transport.send(conn, "eth_protocolVersion",[]) do
       {:ok, version} ->
         decoded_version = version
           |> Hexate.to_integer
@@ -144,7 +144,7 @@ defmodule Ethereum.Eth do
   """
   @spec syncing() :: {:ok, boolean()} | {:error, String.t}
   def syncing do
-    case Transport.send("eth_syncing") do
+    case Transport.send(conn, "eth_syncing") do
       {:ok, result} ->
         {:ok, result}
       {:error, reason} ->
@@ -164,7 +164,7 @@ defmodule Ethereum.Eth do
   """
   @spec coinbase() :: {:ok, String.t} | {:error, String.t}
   def coinbase do
-    case Transport.send("eth_coinbase",[]) do
+    case Transport.send(conn, "eth_coinbase",[]) do
       {:ok, hash} ->
         {:ok, hash}
       {:error, reason} ->
@@ -184,7 +184,7 @@ defmodule Ethereum.Eth do
   """
   @spec mining() :: {:ok, boolean} | {:error, String.t}
   def mining do
-    case Transport.send("eth_mining") do
+    case Transport.send(conn, "eth_mining") do
       {:ok, result} ->
         {:ok, result}
       {:error, reason} ->
@@ -206,7 +206,7 @@ defmodule Ethereum.Eth do
   """
   @spec hashrate() :: {:ok, String.t} | {:error, String.t}
   def hashrate do
-    case Transport.send("eth_hashrate") do
+    case Transport.send(conn, "eth_hashrate") do
       {:ok, result} ->
         {:ok, result}
       {:error, reason} ->
@@ -226,7 +226,7 @@ defmodule Ethereum.Eth do
   """
   @spec gas_price() :: {:ok, String.t} | {:error, String.t}
   def gas_price do
-    case Transport.send("eth_gasPrice") do
+    case Transport.send(conn, "eth_gasPrice") do
       {:ok, result} ->
         price = result
           |> Hexate.to_integer
@@ -251,7 +251,7 @@ defmodule Ethereum.Eth do
   """
   @spec accounts() :: {:ok, list} | {:error, String.t}
   def accounts do
-    case Transport.send("eth_accounts") do
+    case Transport.send(conn, "eth_accounts") do
       {:ok, result} ->
         {:ok, result}
       {:error, reason} ->
@@ -275,7 +275,7 @@ defmodule Ethereum.Eth do
   """
   @spec transaction_count(account_hash :: String.t) :: {:ok, integer} | {:error, String.t}
   def transaction_count(account_hash) do
-    case Transport.send("eth_getTransactionCount",[account_hash, "latest"]) do
+    case Transport.send(conn, "eth_getTransactionCount",[account_hash, "latest"]) do
       {:ok, block} ->
         decoded_number = block
           |> Hexate.to_integer
@@ -296,7 +296,7 @@ defmodule Ethereum.Eth do
   """
   @spec get_transaction_by_hash(binary()) :: {:ok, binary()} | {:error, String.t}
   def get_transaction_by_hash(hash) do
-    case Transport.send("eth_getTransactionByHash",[hash]) do
+    case Transport.send(conn, "eth_getTransactionByHash",[hash]) do
       {:ok, txn} ->
         decoded_txn = txn
         {:ok, txn}
@@ -317,7 +317,7 @@ defmodule Ethereum.Eth do
 """
 @spec get_filter_logs(binary()) :: {:ok, binary()} | {:error, String.t}
 def get_filter_logs(hash) do
-  case Transport.send("eth_getFilterLogs", [hash]) do
+  case Transport.send(conn, "eth_getFilterLogs", [hash]) do
     {:ok, logs} ->
       {:ok, logs}
     {:error, reason} ->
@@ -336,7 +336,7 @@ end
   """
   @spec get_filter_changes(binary()) :: {:ok, binary()} | {:error, String.t}
   def get_filter_changes(hash) do
-    case Transport.send("eth_getFilterChanges",[hash]) do
+    case Transport.send(conn, "eth_getFilterChanges",[hash]) do
       {:ok, logs} ->
         {:ok, logs}
       {:error, reason} ->
@@ -355,7 +355,7 @@ end
   """
   @spec uninstall_filter(binary()) :: {:ok, binary()} | {:error, String.t}
   def uninstall_filter(hash) do
-    case Transport.send("eth_uninstallFilter",[hash]) do
+    case Transport.send(conn, "eth_uninstallFilter",[hash]) do
       {:ok, res} ->
         {:ok, res}
       {:error, reason} ->
@@ -374,7 +374,7 @@ end
   """
   @spec new_filter(map()) :: {:ok, binary()} | {:error, String.t}
   def new_filter(map) do
-    case Transport.send("eth_newFilter",[map]) do
+    case Transport.send(conn, "eth_newFilter",[map]) do
       {:ok, res} ->
         Logger.warn "Ethereum.Eth.new_filter"
         {:ok, res}
@@ -400,7 +400,7 @@ end
   """
   @spec get_transaction_receipt_by_hash(binary()) :: {:ok, binary()} | {:error, String.t}
   def get_transaction_receipt_by_hash(hash) do
-    case Transport.send("eth_getTransactionReceipt",[hash]) do
+    case Transport.send(conn, "eth_getTransactionReceipt",[hash]) do
       {:ok, txn} ->
         decoded_txn = txn
         {:ok, txn}
@@ -415,7 +415,7 @@ end
   """
   def eth_send_transaction(params) do
     [h | t] = params
-    case Transport.send("eth_sendTransaction", [h], false) do
+    case Transport.send(conn, "eth_sendTransaction", [h], false) do
       {:ok, result} ->
         {:ok, result}
       {:error, reason} ->
