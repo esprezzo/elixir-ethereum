@@ -64,7 +64,7 @@ defmodule Ethereum.Transport do
       _ -> "http://" <> conn.ethereum_host <> ":" <> conn.ethereum_port
     end
 
-    Logger.info "XXXXX DAEMON_HOST: #{inspect daemon_host}"
+    # Logger.info "XXXXX DAEMON_HOST: #{inspect daemon_host}"
     {:ok, encoded} = Jason.encode(enc)
     result =
       __MODULE__.post!(daemon_host, encoded)
