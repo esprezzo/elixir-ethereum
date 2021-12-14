@@ -16,7 +16,7 @@ defmodule Ethereum.Transport do
 
   @doc false
   @spec send(conn :: map, method :: String.t, params :: map, dehex :: boolean) :: {:ok, map} | {:error, String.t}
-  def send(conn, method, params, dehex \\ true) do
+  def send(conn, method, params, dehex) do
 
     enc = %{
       method: method,

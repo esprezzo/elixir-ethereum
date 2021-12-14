@@ -77,7 +77,7 @@ defmodule Ethereum.Eth do
   @spec get_block_by_number(map(), binary(), boolean()) :: {:ok, integer} | {:error, String.t}
   def get_block_by_number(conn, number, full) do
     hex_num = "0x" <> Hexate.encode(number)
-    case Transport.send(conn, "eth_getBlockByNumber",[hex_num, full]) do
+    case Transport.send(conn, "eth_getBlockByNumber",[hex_num, full], false) do
       {:ok, block} ->
         decoded_block = block
         {:ok, decoded_block}
