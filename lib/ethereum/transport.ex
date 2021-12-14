@@ -15,8 +15,8 @@ defmodule Ethereum.Transport do
   plug Tesla.Middleware.JSON
 
   @doc false
-  @spec send(conn :: map, method :: String.t, params :: map) :: {:ok, map} | {:error, String.t}
-  def send(conn, method, params, dehex) do
+  @spec send(conn :: map, method :: String.t, params :: map, dehex :: boolean) :: {:ok, map} | {:error, String.t}
+  def send(conn, method, params, dehex \\ true) do
 
     enc = %{
       method: method,
