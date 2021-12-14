@@ -54,7 +54,7 @@ defmodule Ethereum.Transport do
     # end
 
     # Requires --rpcvhosts=* on Eth Daemon - TODO: Clean up move PORT to run script
-
+    IEx.pry
     daemon_host = case conn.ssl do
       "true" ->
         case conn.infura_project_id do
