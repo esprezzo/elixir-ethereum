@@ -54,7 +54,7 @@ defmodule Ethereum.Transport do
     # end
 
     # Requires --rpcvhosts=* on Eth Daemon - TODO: Clean up move PORT to run script
-    IEx.pry
+
     daemon_host = case conn.ssl do
       "true" ->
         case conn.infura_project_id do
@@ -63,8 +63,9 @@ defmodule Ethereum.Transport do
         end
       _ -> "http://" <> conn.ethereum_host <> ":" <> conn.ethereum_port
     end
-    Logger.info "XXXXX DAEMON_HOST: #{daemon_host}"
 
+    Logger.info "XXXXX DAEMON_HOST: #{inspect daemon_host}"
+    IEx.pry
     {:ok, encoded} = Jason.encode(enc)
     result =
       __MODULE__.post!(daemon_host, encoded)
