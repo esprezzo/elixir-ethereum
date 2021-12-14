@@ -65,7 +65,6 @@ defmodule Ethereum.Transport do
     end
 
     Logger.info "XXXXX DAEMON_HOST: #{inspect daemon_host}"
-    IEx.pry
     {:ok, encoded} = Jason.encode(enc)
     result =
       __MODULE__.post!(daemon_host, encoded)
