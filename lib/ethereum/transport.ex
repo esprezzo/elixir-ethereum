@@ -22,7 +22,7 @@ defmodule Ethereum.Transport do
       method: method,
       params: params,
       jsonrpc: "2.0",
-      id: 0
+      id: "0"
     }
 
     # ethereum_host = case System.get_env("ETHEREUM_HOST") do
