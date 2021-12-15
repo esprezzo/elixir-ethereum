@@ -32,6 +32,7 @@ defmodule Ethereum do
   defdelegate gas_price(), to: Eth
   defdelegate accounts(), to: Eth
   defdelegate block_number(), to: Eth
+  defdelegate block_number(conn), to: Eth
   defdelegate transaction_count(hash), to: Eth
   defdelegate get_filter_changes(hash), to: Eth
   defdelegate get_filter_logs(hash), to: Eth

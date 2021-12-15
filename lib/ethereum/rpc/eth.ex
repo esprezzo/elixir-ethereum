@@ -30,6 +30,17 @@ defmodule Ethereum.Eth do
     end
   end
 
+  @spec block_number(map()) :: {:ok, integer} | {:error, String.t}
+  def block_number(conn) do
+    case Transport.send(conn, "eth_blockNumber",[]) do
+      {:ok, resp} ->
+        decoded_number = resp
+          |> Hexate.to_integer
+        {:ok, decoded_number}
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
   @doc """
   Get balance of Ethereum account by hash
 
