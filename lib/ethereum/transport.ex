@@ -9,8 +9,8 @@ defmodule Ethereum.Transport do
 
   plug Tesla.Middleware.Headers, [
     {"content-type", "application/json"},
-    {"Api-Key", System.get_env("ETHEREUM_API_KEY")},
-    {"Api-Secret", System.get_env("ETHEREUM_API_SECRET")},
+    # {"Api-Key", System.get_env("ETHEREUM_API_KEY")},
+    # {"Api-Secret", System.get_env("ETHEREUM_API_SECRET")},
   ]
   plug Tesla.Middleware.JSON
 
