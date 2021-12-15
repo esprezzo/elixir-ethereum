@@ -2,7 +2,7 @@ defmodule Ethereum.Transport do
   require Logger
   use Tesla
   adapter Tesla.Adapter.Hackney, [ssl_options: [{:versions, [:'tlsv1.2']}]]
-  plug Tesla.Middleware.Timeout, timeout: 50_000
+  # plug Tesla.Middleware.Timeout, timeout: 50_000
   plug Tesla.Middleware.Logger
 
   # adapter :hackney, [ssl_optionsg: [{:versions, [:'tlsv1.2']}]]
