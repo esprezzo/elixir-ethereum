@@ -32,7 +32,7 @@ defmodule Ethereum.Eth do
 
   @spec block_number(map()) :: {:ok, integer} | {:error, String.t}
   def block_number(conn) do
-    case Transport.send_fast(conn, "eth_blockNumber",[], false) do
+    case Transport.send_fast(conn, "eth_blockNumber",[], true) do
       {:ok, resp} ->
         decoded_number = resp
           |> Hexate.to_integer
